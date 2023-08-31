@@ -12,15 +12,27 @@ namespace Empresa_do_Zoorebas
         private double saldo;
         private double lucro;
         private double dinheiro_gasto_com_compra;
+        private double creditoDProdutosEncomomendados_;
+        public void SaldoEncomendando(double valor)
+        {
+            this.creditoDProdutosEncomomendados_ += valor;
+        }
         public void Vendeu(double saldo)
+
         {
             this.saldo += saldo;
             lucro += saldo / 2;
            
         }
-        public double getSaldo()
+        public void setSaldo(double valor)
         {
-            Console.WriteLine($"Caixa saldo:{saldo}");
+            this.saldo = valor;
+        }
+        public double getSaldo(int um_soparaosaldo)
+        {
+            if (um_soparaosaldo == 1) {
+                return saldo;
+            }else Console.WriteLine($"Caixa saldo: {saldo}$");
             return saldo;
         }
         public void Comprando(double preco)

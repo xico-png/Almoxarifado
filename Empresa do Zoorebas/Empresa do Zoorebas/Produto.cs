@@ -12,18 +12,26 @@ namespace Empresa_do_Zoorebas
         private double preco;
         private int quantidadedeprodutos;
         private double precototalemestoque;
+        private int id;
         Caixa caixa = new Caixa();
 
         public Produto()
         {
 
         }
-        public Produto(string nome, float preco, int quantidadedeprodutos)
+        public Produto(string nome, float preco, int quantidadedeprodutos, int id)
         {
+            this.id = id;
             this.nome = nome;
             this.preco = preco;
             this.quantidadedeprodutos = quantidadedeprodutos;
             AtualizaPreço();
+            this.id = id;
+
+        }
+        public int GetId()
+        {
+            return id;
         }
         public void SetPreco(double preco)
         {
@@ -78,19 +86,18 @@ namespace Empresa_do_Zoorebas
         {
             precototalemestoque = quantidadedeprodutos * preco;
         }
-        public void AlmoxarifadoComprarDaEmpresa(int quantidade)
+        public void AlmoxarifadoComprarDaEmpresa(Caixa caixa, int quantidade)
 
         {
 
             double valorquecompra = preco / 2;
             valorquecompra = valorquecompra * quantidade;
-            if(caixa.getSaldo() >= valorquecompra)
+            if (caixa.getSaldo(1) >= valorquecompra)
             {
-               ComprarMais(quantidade);
+                
                 caixa.Comprando(valorquecompra);
-                AtualizaPreço();
             }
-            Console.WriteLine("O caixa da loja esta insuficiente para tal compra");
+            else {Console.WriteLine("O caixa da loja esta insuficiente para tal compra"); }
 
 
         }
